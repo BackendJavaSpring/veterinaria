@@ -34,6 +34,9 @@ public class HosHospitalizacionPaciente {
     @Column(name = "fechaActualizacion")
     private Date fechaActualizacion;
 
+    @Column(name = "estado")
+    private String estado;
+
     public int getIdHospitalizacion() {
         return idHospitalizacion;
     }
@@ -90,4 +93,15 @@ public class HosHospitalizacionPaciente {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+
+
+    
 }

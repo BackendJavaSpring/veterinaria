@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.viamatica.veterinaria.modelo.HosHospitalizacionPaciente;
 import com.viamatica.veterinaria.modelo.HosRevisionDiaria;
 import com.viamatica.veterinaria.repositorio.HosRevisionDiariaRepositorio;
 
@@ -29,6 +30,22 @@ class HosRevisionDiariaControlador {
 
     @GetMapping
     public ResponseEntity<List<HosRevisionDiaria>> obtenerTodos() {
+        try {
+            List<HosRevisionDiaria> items = new ArrayList<HosRevisionDiaria>();
+
+            repositorio.findAll().stream().filter( item -> item.getEstado()!=null && item.getEstado().equals("A")).forEach(items::add);
+
+            if (items.isEmpty())
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<>(items, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/incluidoBorrados")
+    public ResponseEntity<List<HosRevisionDiaria>> obtenerTodosIncluidoBorrados() {
         try {
             List<HosRevisionDiaria> items = new ArrayList<HosRevisionDiaria>();
 
@@ -81,7 +98,18 @@ class HosRevisionDiariaControlador {
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> borrar(@PathVariable("id") Integer id) {
         try {
-            repositorio.deleteById(id);
+            Optional<HosRevisionDiaria> itemsOpcional = repositorio.findById(id);
+            //Si no existe
+            if(!itemsOpcional.isPresent())
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            
+            //Si ya está desactivado
+            if(itemsOpcional.get().getEstado() == "I")
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            //Pone en I el estado
+            HosRevisionDiaria itemExistente = itemsOpcional.get();
+            itemExistente.setEstado("I");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);

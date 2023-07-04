@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.viamatica.veterinaria.modelo.HosCirugia;
 import com.viamatica.veterinaria.modelo.HosHospitalizacionPaciente;
 import com.viamatica.veterinaria.repositorio.HosHospitalizacionPacienteRepositorio;
 
@@ -30,6 +31,22 @@ class HosHospitalizacionPacienteControlador {
 
     @GetMapping
     public ResponseEntity<List<HosHospitalizacionPaciente>> obtenerTodos() {
+        try {
+            List<HosHospitalizacionPaciente> items = new ArrayList<HosHospitalizacionPaciente>();
+
+            repositorio.findAll().stream().filter( item -> item.getEstado()!=null &&  item.getEstado().equals("A")).forEach(items::add);
+
+            if (items.isEmpty())
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<>(items, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/incluidoBorrados")
+    public ResponseEntity<List<HosHospitalizacionPaciente>> obtenerTodosIncluidoBorrados() {
         try {
             List<HosHospitalizacionPaciente> items = new ArrayList<HosHospitalizacionPaciente>();
 
@@ -83,7 +100,18 @@ class HosHospitalizacionPacienteControlador {
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> borrar(@PathVariable("id") Integer id) {
         try {
-            repositorio.deleteById(id);
+            Optional<HosHospitalizacionPaciente> itemsOpcional = repositorio.findById(id);
+            //Si no existe
+            if(!itemsOpcional.isPresent())
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            
+            //Si ya está desactivado
+            if(itemsOpcional.get().getEstado() == "I")
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            //Pone en I el estado
+            HosHospitalizacionPaciente itemExistente = itemsOpcional.get();
+            itemExistente.setEstado("I");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);

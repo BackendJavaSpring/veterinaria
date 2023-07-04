@@ -33,6 +33,22 @@ class HosCirugiaControlador {
         try {
             List<HosCirugia> items = new ArrayList<HosCirugia>();
 
+            repositorio.findAll().stream().filter( item -> item.getEstadoCirugia()!=null &&  item.getEstadoCirugia().equals("A")).forEach(items::add);
+
+            if (items.isEmpty())
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<>(items, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/incluidoBorrados")
+    public ResponseEntity<List<HosCirugia>> obtenerTodosIncluidoBorrados() {
+        try {
+            List<HosCirugia> items = new ArrayList<HosCirugia>();
+
             repositorio.findAll().forEach(items::add);
 
             if (items.isEmpty())
@@ -84,8 +100,20 @@ class HosCirugiaControlador {
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> borrar(@PathVariable("id") int id) {
         try {
-            repositorio.deleteById(id);
+            Optional<HosCirugia> itemsOpcional = repositorio.findById(id);
+            //Si no existe
+            if(!itemsOpcional.isPresent())
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            
+            //Si ya está desactivado
+            if(itemsOpcional.get().getEstadoCirugia() == "I")
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            //Pone en I el estado
+            HosCirugia itemExistente = itemsOpcional.get();
+            itemExistente.setEstadoCirugia("I");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }

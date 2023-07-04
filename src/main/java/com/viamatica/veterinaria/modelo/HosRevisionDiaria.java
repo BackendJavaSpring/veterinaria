@@ -30,6 +30,9 @@ public class HosRevisionDiaria
     @Column(name = "fechaActualizacion")
     private Date fechaActulizacion;
 
+    @Column(name = "estado")
+    private String estado;
+
     public int getIdRevisionDiaria() {
         return idRevisionDiaria;
     }
@@ -70,4 +73,13 @@ public class HosRevisionDiaria
         this.fechaActulizacion = fechaActulizacion;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
 }
