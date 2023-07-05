@@ -14,6 +14,7 @@ public class HisDoctorServicio {
 
 	@Autowired
     HisDoctorRepositorio hisDoctorRepositorio;
+	
 
     public List<HisDoctor> ObtenerListado(){
 
@@ -21,7 +22,7 @@ public class HisDoctorServicio {
 
     }
 
-    public Optional <HisDoctor> ObtenerId(int id){
+    public Optional<HisDoctor> ObtenerId(int id){
 
         return hisDoctorRepositorio.findById(id);
 
@@ -37,8 +38,8 @@ public class HisDoctorServicio {
     public void BorrarId(int id){
 
         hisDoctorRepositorio.deleteById(id);
-
-    }
+    }	
 	
-	
+    
+    
 }

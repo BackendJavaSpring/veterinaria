@@ -9,9 +9,10 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.viamatica.veterinaria.modelo.GesTipopaciente;
+import com.viamatica.veterinaria.repositorio.GesTipopacienteRepositorio;
 import com.viamatica.veterinaria.servicio.GesTipopacienteServicio;
+
 
 @RestController
 public class GesTipopacienteControlador {

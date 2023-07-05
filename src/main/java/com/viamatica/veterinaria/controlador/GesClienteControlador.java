@@ -1,6 +1,6 @@
 package com.viamatica.veterinaria.controlador;
 
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.viamatica.veterinaria.modelo.GesCliente;
 import com.viamatica.veterinaria.servicio.GesClienteServicio;
+
 
 @RestController
 @RequestMapping("/GesCliente")
 public class GesClienteControlador {
 
 	@Autowired
-	GesClienteServicio gesClienteServicio;
+	GesClienteServicio   gesClienteServicio;
 
 	@GetMapping
 	public ResponseEntity<List<GesCliente>> obtenerTodos() {
@@ -42,6 +42,8 @@ public class GesClienteControlador {
 	}
 	
 	
+	
+	
 	@GetMapping("/{clienteId}")
 	public ResponseEntity<Optional<GesCliente>> obtenerPorId(@PathVariable ("clienteId") int clienteId){
 		
@@ -56,7 +58,7 @@ public class GesClienteControlador {
 							
 						}
 						
-						return new ResponseEntity<>(HttpStatus.OK);
+						return new ResponseEntity<>(listNum, HttpStatus.OK);
 					}
 					catch (Exception e) {
 						

@@ -18,35 +18,55 @@ import lombok.Data;
 @Table(name="SegUsuario" , schema="dbo")
 public class SegUsuario {
 
-	 	@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "idUsuario")
-	    private Integer idUsuario;
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "idUsuario")
+		private int idUsuario;
+	
+		@Column(name = "nombreUsuario", length = 20, nullable = false)
+		private String nombreUsuario;
+	
+		@Column(name = "contrasenia", length = 20, nullable = false)
+		private String contrasenia;
+	
+		@Column(name = "correo", length = 50, nullable = false)
+		private String correo;
 
-	    @Column(name = "nombreUsuario", nullable = false, length = 20)
-	    private String nombreUsuario;
+	    @Column(name = "bloqueado", nullable = false)
+	    private boolean bloqueado;
 
-	    @Column(name = "contrasenia", nullable = false, length = 20)
-	    private String contrasenia;
+		@Column(name = "estadoUsuario", length = 1, nullable = false)
+		private String estadoUsuario;
+	
+		@Column(name = "fechaCreacion", nullable = false)
+		private LocalDateTime fechaCreacion;
+	
+		@Column(name = "fechaActualizacion")
+		private LocalDateTime fechaActualizacion;
+	
+		@Column(name = "fechaEliminacion")
+		private LocalDateTime fechaEliminacion;
 
-	    @Column(name = "correo", nullable = false, length = 50)
-	    private String correo;
-
-	    //@Column(name = "bloqueado", nullable = false)
-	    //private bit bloqueado;
-
-	    @Column(name = "estadoUsuario", nullable = false, length = 1)
-	    private String estadoUsuario;
-
-	    @Column(name = "fechaCreacion", nullable = false)
-	    private LocalDateTime fechaCreacion;
-
-	    @Column(name = "fechaActualizacion")
-	    private LocalDateTime fechaActualizacion;
-
-	    //@ManyToOne
-	    //@JoinColumn(name = "idPerfil", nullable = false)
-	   // private SegPerfil segPerfil;
+	    @ManyToOne
+	    @JoinColumn(name = "idPerfil", referencedColumnName = "idPerfil", nullable = false)
+	    private SegPerfil segPerfil;
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

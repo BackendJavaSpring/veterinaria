@@ -11,13 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viamatica.veterinaria.modelo.GesPaciente;
+import com.viamatica.veterinaria.repositorio.GesPacienteRepositorio;
 import com.viamatica.veterinaria.servicio.GesPacienteServicio;
+
 
 @RestController
 public class GesPacienteControlador {
 
 	@Autowired
-	private GesPacienteServicio gesPacienteServicio;
+	GesPacienteServicio gesPacienteServicio;
 	
 	
 	public ResponseEntity<List<GesPaciente>> obtenerTodos(){

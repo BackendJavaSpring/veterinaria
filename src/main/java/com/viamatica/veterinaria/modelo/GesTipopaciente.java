@@ -15,11 +15,23 @@ import lombok.Data;
 public class GesTipopaciente {
 
 	
-    @Id
+	@Id
     @Column(name = "idTipoPaciente", length = 1)
     private String idTipoPaciente;
 
     @Column(name = "tipoPaciente", length = 20, nullable = false)
     private String tipoPaciente;
+
+    @Column(name = "estadoTipoPaciente", length = 1, nullable = false)
+    private String estadoTipoPaciente;
+
+    @Column(name = "fechaCreacion", nullable = false)
+    private LocalDateTime fechaCreacion;
+
+    @Column(name = "fechaActualizacion")
+    private LocalDateTime fechaActualizacion;
+
+    @Column(name = "fechaEliminacion")
+    private LocalDateTime fechaEliminacion;
 	
 }

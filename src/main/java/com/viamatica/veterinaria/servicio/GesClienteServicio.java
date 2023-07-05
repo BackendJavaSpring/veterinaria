@@ -1,15 +1,13 @@
 package com.viamatica.veterinaria.servicio;
 
-import java.util.*;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.viamatica.veterinaria.modelo.GesCliente;
-import com.viamatica.veterinaria.modelo.HisDoctor;
 import com.viamatica.veterinaria.repositorio.GesClienteRepositorio;
-
 
 @Service
 public class GesClienteServicio {
@@ -26,16 +24,10 @@ public class GesClienteServicio {
 
 
 
-    public Optional <GesCliente> ObtenerId(int id){
+    public Optional<GesCliente> ObtenerId(int id){
 
         return gesClienteRepositorio.findById(id);
 
     }
 
-	
-	
-	
-	
-	
-	
 }

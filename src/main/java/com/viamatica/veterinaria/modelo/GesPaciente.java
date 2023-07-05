@@ -20,7 +20,7 @@ import lombok.Data;
 @Table(name="GesPaciente" , schema="dbo")
 public class GesPaciente{
 	
-		@Id
+	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "idPaciente")
 	    private int idPaciente;
@@ -38,12 +38,12 @@ public class GesPaciente{
 	    private String raza;
 
 	    @ManyToOne
-	    @JoinColumn(name = "idTipoPaciente", nullable = false)
-	    private GesTipopaciente tipoPaciente;
+	    @JoinColumn(name = "idTipoPaciente", referencedColumnName = "idTipoPaciente", nullable = false)
+	    private GesTipopaciente gesTipopaciente;
 
 	    @ManyToOne
-	    @JoinColumn(name = "idCliente", nullable = false)
-	    private GesCliente cliente;
+	    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente", nullable = false)
+	    private GesCliente gesCliente;
 
 	    @Column(name = "estadoPaciente", length = 1, nullable = false)
 	    private String estadoPaciente;
@@ -53,6 +53,9 @@ public class GesPaciente{
 
 	    @Column(name = "fechaActualizacion")
 	    private LocalDateTime fechaActualizacion;
+
+	    @Column(name = "fechaEliminacion")
+	    private LocalDateTime fechaEliminacion;
 }
 
 

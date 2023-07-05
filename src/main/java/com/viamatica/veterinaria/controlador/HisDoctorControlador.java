@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.viamatica.veterinaria.modelo.HisDoctor;
+import com.viamatica.veterinaria.repositorio.HisDoctorRepositorio;
 import com.viamatica.veterinaria.servicio.HisDoctorServicio;
 
 import lombok.extern.log4j.Log4j2;
@@ -29,7 +29,7 @@ import lombok.extern.log4j.Log4j2;
 public class HisDoctorControlador {
     
 	@Autowired
-	HisDoctorServicio hisDoctorServicio;
+    HisDoctorServicio hisDoctorServicio;
 
 
         @GetMapping
