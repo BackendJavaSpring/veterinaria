@@ -22,10 +22,10 @@ public class GesPaciente{
 	
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "idPaciente")
+	    @Column(name = "idPaciente" , unique=true)
 	    private int idPaciente;
 
-	    @Column(name = "nombrePaciente", length = 30, nullable = false)
+	    @Column(name = "nombrePaciente", length = 30, unique=true, nullable = false)
 	    private String nombrePaciente;
 
 	    @Column(name = "fechaNac", nullable = false)
@@ -42,7 +42,7 @@ public class GesPaciente{
 	    private GesTipopaciente gesTipopaciente;
 
 	    @ManyToOne
-	    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente", nullable = false)
+	    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente",unique=true, nullable = false)
 	    private GesCliente gesCliente;
 
 	    @Column(name = "estadoPaciente", length = 1, nullable = false)

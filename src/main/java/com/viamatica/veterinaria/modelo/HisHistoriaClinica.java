@@ -20,22 +20,22 @@ public class HisHistoriaClinica {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "idHistoriaCli")
+		@Column(name = "idHistoriaCli", unique=true)
 		private int idHistoriaCli;
 	
 		@Column(name = "fechaIngreso", nullable = false)
 		private LocalDate fechaIngreso;
 
 		@ManyToOne
-		@JoinColumn(name = "idConsulta", referencedColumnName = "idConsulta", nullable = false)
+		@JoinColumn(name = "idConsulta", referencedColumnName = "idConsulta",unique=true, nullable = false)
 		private HisConsulta hisConsulta;
 		
 		@ManyToOne
-		@JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente", nullable = false)
+		@JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente", unique=true,nullable = false)
 		private GesPaciente gesPaciente;
 		
 		@ManyToOne
-		@JoinColumn(name = "idCliente", referencedColumnName = "idCliente", nullable = false)
+		@JoinColumn(name = "idCliente", referencedColumnName = "idCliente",unique=true, nullable = false)
 		private GesCliente gesCliente;
 		
 	    @Column(name = "fechaCreacion", nullable = false)

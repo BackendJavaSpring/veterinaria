@@ -20,16 +20,16 @@ public class SegUsuario {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "idUsuario")
+		@Column(name = "idUsuario", unique=true)
 		private int idUsuario;
 	
-		@Column(name = "nombreUsuario", length = 20, nullable = false)
+		@Column(name = "nombreUsuario", length = 20,unique=true, nullable = false)
 		private String nombreUsuario;
 	
-		@Column(name = "contrasenia", length = 20, nullable = false)
+		@Column(name = "contrasenia", length = 20,unique=true, nullable = false)
 		private String contrasenia;
 	
-		@Column(name = "correo", length = 50, nullable = false)
+		@Column(name = "correo", length = 50,unique=true, nullable = false)
 		private String correo;
 
 	    @Column(name = "bloqueado", nullable = false)

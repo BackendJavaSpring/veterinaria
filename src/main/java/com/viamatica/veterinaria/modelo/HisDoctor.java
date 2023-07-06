@@ -21,23 +21,23 @@ public class HisDoctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDoctor")
+    @Column(name = "idDoctor" , unique=true)
     private int idDoctor;
 
-    @Column(name = "nombre", length = 30, nullable = false)
+    @Column(name = "nombre", length = 30, unique=true, nullable = false)
     private String nombre;
     
     @ManyToOne
-    @JoinColumn(name="idUsuario" , referencedColumnName="idUsuario", nullable=false)
+    @JoinColumn(name="idUsuario" , referencedColumnName="idUsuario",unique=true, nullable=false)
     private SegUsuario segUsuario;
 
-    @Column(name = "cedula", length = 20, nullable = false)
+    @Column(name = "cedula", length = 20, unique=true,nullable = false)
     private String cedula;
 
     @Column(name = "edad", nullable = false)
     private int edad;
 
-    @Column(name = "telefono", length = 10, nullable = false)
+    @Column(name = "telefono", length = 10,unique=true, nullable = false)
     private String telefono;
 
     @Column(name = "especialidad", length = 20, nullable = false)

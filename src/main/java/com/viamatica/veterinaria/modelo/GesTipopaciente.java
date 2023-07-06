@@ -16,7 +16,7 @@ public class GesTipopaciente {
 
 	
 	@Id
-    @Column(name = "idTipoPaciente", length = 1)
+    @Column(name = "idTipoPaciente", length = 1, unique=true)
     private String idTipoPaciente;
 
     @Column(name = "tipoPaciente", length = 20, nullable = false)

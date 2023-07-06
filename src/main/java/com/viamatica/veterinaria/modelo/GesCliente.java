@@ -21,28 +21,28 @@ public class GesCliente {
 
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "idCliente")
+	    @Column(name = "idCliente" , unique=true)
 	    private int idCliente;
 	
-	    @Column(name = "numDocumento", length = 13, nullable = false)
+	    @Column(name = "numDocumento", length = 13, unique=true, nullable = false)
 	    private String numDocumento;
 	
-	    @Column(name = "nombreCliente", length = 30, nullable = false)
+	    @Column(name = "nombreCliente", length = 30,unique=true, nullable = false)
 	    private String nombreCliente;
 	
-	    @Column(name = "apellidoCliente", length = 30, nullable = false)
+	    @Column(name = "apellidoCliente", length = 30, unique=true, nullable = false)
 	    private String apellidoCliente;
 	
-	    @Column(name = "fechaNac", nullable = false)
+	    @Column(name = "fechaNac",nullable = false)
 	    private LocalDate fechaNac;
 	
-	    @Column(name = "telefono", length = 10, nullable = false)
+	    @Column(name = "telefono", length = 10,unique=true, nullable = false)
 	    private String telefono;
 	
-	    @Column(name = "direccion", length = 100, nullable = false)
+	    @Column(name = "direccion", length = 100,unique=true, nullable = false)
 	    private String direccion;
 	
-	    @Column(name = "correo", length = 100)
+	    @Column(name = "correo",unique=true, length = 100)
 	    private String correo;
 	
 	    @Column(name = "estadoCliente", length = 1, nullable = false)
@@ -58,7 +58,7 @@ public class GesCliente {
 	    private LocalDateTime fechaEliminacion;
 	
 	    @ManyToOne
-	    @JoinColumn(name="idUsuario" , referencedColumnName="idUsuario", nullable=false)
+	    @JoinColumn(name="idUsuario" , referencedColumnName="idUsuario",unique=true, nullable=false)
 	    private SegUsuario segUsuario;
 	
 	

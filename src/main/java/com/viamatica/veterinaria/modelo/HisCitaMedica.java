@@ -20,7 +20,7 @@ public class HisCitaMedica {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCitaMedica")
+    @Column(name = "idCitaMedica" , unique=true)
     private int idCitaMedica;
 
     @Column(name = "fechaCita", nullable = false)
@@ -34,11 +34,11 @@ public class HisCitaMedica {
     private HisDoctor hisDoctor;
     
     @ManyToOne
-    @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente", nullable = false)
+    @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente",unique=true, nullable = false)
     private GesPaciente gesPaciente;
     
     @ManyToOne
-    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente", nullable = false)
+    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente", unique=true,nullable = false)
     private GesCliente gesCliente;
 
     @Column(name = "estadoCitaMedica", length = 1, nullable = false)
