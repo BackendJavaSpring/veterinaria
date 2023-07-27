@@ -13,10 +13,10 @@ import com.viamatica.veterinaria.repositorio.GesPacienteRepositorio;
 public class GesPacienteServicio {
 
 	@Autowired
-	GesPacienteRepositorio gesPacienteRepositorio;
-	
-	
-	
+	private GesPacienteRepositorio gesPacienteRepositorio;
+
+
+
 	public List<GesPaciente> obtener () {
 		
 		return gesPacienteRepositorio.findAll();

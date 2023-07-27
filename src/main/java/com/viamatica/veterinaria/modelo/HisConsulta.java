@@ -13,14 +13,15 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Data
+
 @Entity
+@Data
 @Table(name="HisConsulta" , schema="dbo")
 public class HisConsulta {
 	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "idConsulta", unique=true)
+		@Column(name = "idConsulta")
 		private int idConsulta;
 	
 		@Column(name = "consulta", length = 20, nullable = false)
@@ -30,11 +31,11 @@ public class HisConsulta {
 		private LocalDate fechaProgramada;
 
 	    @ManyToOne
-	    @JoinColumn(name = "idDoctor", referencedColumnName = "idDoctor",unique=true, nullable = false)
+	    @JoinColumn(name = "idDoctor", referencedColumnName = "idDoctor", nullable = false)
 	    private HisDoctor doctor;
 
 	    @ManyToOne
-	    @JoinColumn(name = "idCitaMedica", referencedColumnName = "idCitaMedica",unique=true,  nullable = false)
+	    @JoinColumn(name = "idCitaMedica", referencedColumnName = "idCitaMedica",  nullable = false)
 	    private HisCitaMedica citaMedica;
 	    
 	    @Column(name = "estadoConsulta", length = 1, nullable = false)
@@ -48,7 +49,9 @@ public class HisConsulta {
 
 	    @Column(name = "fechaEliminacion")
 	    private LocalDateTime fechaEliminacion;
-	
+
+		
+
 	
 
 }

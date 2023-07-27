@@ -1,8 +1,7 @@
 package com.viamatica.veterinaria.modelo;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,8 +12,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Data
+
 @Entity
+@Data
 @Table(name="SegUsuario" , schema="dbo")
 public class SegUsuario {
 
@@ -50,7 +50,9 @@ public class SegUsuario {
 	    @ManyToOne
 	    @JoinColumn(name = "idPerfil", referencedColumnName = "idPerfil", nullable = false)
 	    private SegPerfil segPerfil;
-	
+
+		
+
 	
 }
 

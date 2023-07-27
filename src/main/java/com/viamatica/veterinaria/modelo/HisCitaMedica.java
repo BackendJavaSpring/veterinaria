@@ -2,7 +2,6 @@ package com.viamatica.veterinaria.modelo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,14 +12,15 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Data
+
 @Entity
+@Data
 @Table(name="HisCitaMedica" , schema="dbo")
 public class HisCitaMedica {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCitaMedica" , unique=true)
+    @Column(name = "idCitaMedica" )
     private int idCitaMedica;
 
     @Column(name = "fechaCita", nullable = false)
@@ -34,11 +34,11 @@ public class HisCitaMedica {
     private HisDoctor hisDoctor;
     
     @ManyToOne
-    @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente",unique=true, nullable = false)
+    @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente", nullable = false)
     private GesPaciente gesPaciente;
     
     @ManyToOne
-    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente", unique=true,nullable = false)
+    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente",nullable = false)
     private GesCliente gesCliente;
 
     @Column(name = "estadoCitaMedica", length = 1, nullable = false)
@@ -52,7 +52,13 @@ public class HisCitaMedica {
 
     @Column(name = "fechaEliminacion")
     private LocalDateTime fechaEliminacion;
+
 	
+    
+    
 	
 
 }
+
+
+

@@ -1,6 +1,6 @@
 package com.viamatica.veterinaria.modelo;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -9,8 +9,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Data
+
+
 @Entity
+@Data
 @Table(name="GesTipopaciente" , schema="dbo")
 public class GesTipopaciente {
 
@@ -33,5 +35,7 @@ public class GesTipopaciente {
 
     @Column(name = "fechaEliminacion")
     private LocalDateTime fechaEliminacion;
+
+	
 	
 }

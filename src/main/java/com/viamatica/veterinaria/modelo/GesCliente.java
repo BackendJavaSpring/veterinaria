@@ -13,8 +13,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Data
+
 @Entity
+@Data
 @Table(name="GesCliente" , schema="dbo")
 public class GesCliente {
 	
@@ -58,8 +59,10 @@ public class GesCliente {
 	    private LocalDateTime fechaEliminacion;
 	
 	    @ManyToOne
-	    @JoinColumn(name="idUsuario" , referencedColumnName="idUsuario",unique=true, nullable=false)
+	    @JoinColumn(name="idUsuario" , referencedColumnName="idUsuario", nullable=false)
 	    private SegUsuario segUsuario;
-	
+
+		
+	    
 	
 }

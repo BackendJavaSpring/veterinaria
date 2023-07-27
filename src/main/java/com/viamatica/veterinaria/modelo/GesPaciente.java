@@ -15,8 +15,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 
-@Data
+
 @Entity
+@Data
 @Table(name="GesPaciente" , schema="dbo")
 public class GesPaciente{
 	
@@ -56,6 +57,12 @@ public class GesPaciente{
 
 	    @Column(name = "fechaEliminacion")
 	    private LocalDateTime fechaEliminacion;
+
+		
+	    
+	    
+	    
+	    
 }
 
 
